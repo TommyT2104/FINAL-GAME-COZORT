@@ -15,7 +15,6 @@ response = requests.get(url)
 # adds in html parser which assists with webscraping
 soup = BeautifulSoup(response.text, 'html.parser')
 
-
 # defines the name of each team
 Name = soup.findAll("th", attrs={"data-stat":"team_name"})
 # defines the hit stats that are pulled from the website
@@ -27,6 +26,7 @@ AtBats = soup.findAll("td", attrs={"data-stat":"AB"})
 BattingAverage = soup.findAll("td", attrs={"data-stat":"batting_avg"})
 
 # a loop that will print the stats of the certain categories from the website
+# added the -1 to exclude the bottom row of the chart that I am webscraping
 for i in range(len(Hits)-1):
     print(Name[i].text + " " + Hits[i].text + " Hits " + AtBats[i].text + " AtBats " 
           + BattingAverage[i].text + " BattingAverage ") 
